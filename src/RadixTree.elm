@@ -114,7 +114,7 @@ singleton element =
 
     singleton [1, 2, 3]
         |> insert [1, 2, 4]
-        |> Tree.children --> [3, 4]
+        |> Tree.children --> [singleton [4], singleton [3]]
 
 -}
 insert : List a -> Tree.Tree (List a) -> Tree.Tree (List a)
