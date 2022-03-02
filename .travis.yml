@@ -23,6 +23,6 @@ install:
   - npm install -g elm-verify-examples@5.0.0
 
 script:
-  - elm-format --validate src tests
+  - elm-format --validate src
   - elm make
   - ./execute-tests
