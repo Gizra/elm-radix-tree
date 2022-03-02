@@ -80,6 +80,8 @@ import Tree.Zipper as TreeZipper
 
 {-| Create an empty Radix tree.
 
+    import Tree
+
     empty
     |> Tree.label --> []
 
@@ -90,6 +92,8 @@ empty =
 
 
 {-| Create an Radix tree with a single value.
+
+    import Tree
 
     singleton [1, 2, 3]
     |> Tree.label --> [1, 2, 3]
