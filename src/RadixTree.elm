@@ -83,7 +83,7 @@ import Tree.Zipper as TreeZipper
     import Tree
 
     empty
-    |> Tree.label --> []
+        |> Tree.label --> []
 
 -}
 empty : Tree.Tree (List a)
@@ -96,7 +96,7 @@ empty =
     import Tree
 
     singleton [1, 2, 3]
-    |> Tree.label --> [1, 2, 3]
+        |> Tree.label --> [1, 2, 3]
 
 -}
 singleton : List a -> Tree.Tree (List a)
@@ -105,6 +105,17 @@ singleton element =
 
 
 {-| An Ordered insert of a value to the Radix tree.
+
+    import Tree
+
+    singleton [1, 2, 3]
+        |> insert [1, 2, 4]
+        |> Tree.label --> [1, 2]
+
+    singleton [1, 2, 3]
+        |> insert [1, 2, 4]
+        |> Tree.children --> [singleton [4], singleton [3]]
+
 -}
 insert : List a -> Tree.Tree (List a) -> Tree.Tree (List a)
 insert xs tree =
