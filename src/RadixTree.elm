@@ -116,6 +116,10 @@ singleton element =
         |> insert [1, 2, 4]
         |> Tree.children --> [singleton [4], singleton [3]]
 
+    singleton [1, 2, 3]
+        |> insert [2, 1, 4]
+        |> Tree.label --> [1, 2]
+
 -}
 insert : List a -> Tree.Tree (List a) -> Tree.Tree (List a)
 insert xs tree =
