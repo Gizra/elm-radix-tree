@@ -123,6 +123,13 @@ insert xs tree =
 
 
 {-| An Un-ordered insert of a value to the Radix tree.
+
+    import Tree
+
+    singleton [1, 2, 3]
+        |> insertUnOrdered [2, 1, 4]
+        |> Tree.label --> [2, 1]
+
 -}
 insertUnOrdered : List a -> Tree.Tree (List a) -> Tree.Tree (List a)
 insertUnOrdered xs tree =
