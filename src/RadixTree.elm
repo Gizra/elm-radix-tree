@@ -118,6 +118,7 @@ singleton element =
 
     singleton [1, 2, 3]
         |> insert [2, 1, 4]
+        |> insert [ 2, 1, 5, 4 ]
         |> Tree.label --> [1, 2]
 
 -}

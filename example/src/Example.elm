@@ -1,27 +1,46 @@
 module Example exposing (..)
 
-import Html exposing (Html, div, li, text, ul)
-import Html.Attributes exposing (class)
+import Html exposing (Html, div, h2, h3, li, text, ul)
+import Html.Attributes exposing (class, style)
 import RadixTree
 import Tree
 
 
 main : Html msg
 main =
-    div []
-        [ viewRadixList
-        , viewRadixTree
+    div
+        [ style "max-width" "48rem"
+        , style "margin-left" "auto"
+        , style "margin-right" "auto"
+        , style "margin-top" "4rem"
+        , style "margin-bottom" "10rem"
+        ]
+        [ h2 [] [ text "Ordered Insert" ]
+        , h3 [] [ text "Original list" ]
+        , viewList listString
+        , h3 [] [ text "Ordered tree" ]
+        , viewTree (listTreeOrdered listString)
+        , h2 [] [ text "Un-Ordered Insert" ]
+        , h3 [] [ text "Original list" ]
+        , viewList listInt
+        , div
+            [ style "display" "grid"
+            , style "grid-template-columns" "repeat(2, minmax(0, 1fr))"
+            ]
+            [ div []
+                [ h3 [] [ text "Un-Ordered tree" ]
+                , viewTree (listToTreeUnOrdered listInt)
+                ]
+            , div []
+                [ h3 [] [ text "Ordered tree" ]
+                , viewTree (listTreeOrdered listInt)
+                ]
+            ]
         ]
 
 
-viewRadixList =
-    radixList
-        |> List.map (\row -> li [] [ text <| Debug.toString row ])
-        |> ul []
-
-
-radixList : List (List String)
-radixList =
+listString : List (List String)
+listString =
     [ [ "r", "o", "m", "a", "n", "e" ]
     , [ "r", "o", "m", "u", "l", "u", "s" ]
     , [ "r", "u", "b", "e", "n", "s" ]
@@ -31,25 +50,48 @@ radixList =
     ]
 
 
-radixExample : Tree.Tree (List String)
-radixExample =
-    radixList
+listInt : List (List Int)
+listInt =
+    [ [ 1, 2, 3 ]
+    , [ 2, 1, 4 ]
+    , [ 2, 1, 5, 4 ]
+    ]
+
+
+listTreeOrdered : List (List a) -> Tree.Tree (List a)
+listTreeOrdered list =
+    list
         |> List.foldl
             (\x accum -> RadixTree.insert x accum)
             RadixTree.empty
 
 
-viewRadixTree : Html msg
-viewRadixTree =
-    radixExample
+listToTreeUnOrdered : List (List a) -> Tree.Tree (List a)
+listToTreeUnOrdered list =
+    list
+        |> List.foldl
+            (\x accum -> RadixTree.insertUnOrdered x accum)
+            RadixTree.empty
+
+
+viewList : List a -> Html msg
+viewList list =
+    list
+        |> List.map (\row -> li [] [ text <| Debug.toString row ])
+        |> ul []
+
+
+viewTree : Tree.Tree (List a) -> Html msg
+viewTree tree =
+    tree
         |> Tree.restructure labelToHtml toListItems
         |> (\root -> Html.ul [] [ root ])
 
 
-labelToHtml : List String -> Html msg
+labelToHtml : List a -> Html msg
 labelToHtml l =
     l
-        |> String.concat
+        |> Debug.toString
         |> text
 
 
