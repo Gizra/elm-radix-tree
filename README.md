@@ -5,7 +5,7 @@
 Under the hood, the Tree structure is managed with 
 [elm-rosetree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/)
 
-Radix tree as defined is defined in Wikipedia: <https://en.wikipedia.org/wiki/Radix_tree>
+Radix tree is defined in Wikipedia: <https://en.wikipedia.org/wiki/Radix_tree>
 
 A data structure that represents a space-optimized trie (prefix tree) in which
 each node that is the only child is merged with its parent.
