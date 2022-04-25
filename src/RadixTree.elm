@@ -1,6 +1,6 @@
 module RadixTree exposing
-    ( RadixTree
-    , empty, singleton, insert, toTree
+    ( RadixTree, toTree
+    , empty, singleton, insert
     )
 
 {-| Build an ordered Radix tree.
@@ -8,12 +8,12 @@ module RadixTree exposing
 
 # Structure
 
-@docs RadixTree
+@docs RadixTree, toTree
 
 
 # Build
 
-@docs empty, singleton, insert, toTree
+@docs empty, singleton, insert
 
 -}
 
@@ -25,6 +25,13 @@ import Tree
 -}
 type RadixTree a
     = RadixTree (Tree.Tree (List a))
+
+
+{-| Extract the `Tree` from the `RadixTree`.
+-}
+toTree : RadixTree a -> Tree.Tree (List a)
+toTree (RadixTree tree) =
+    tree
 
 
 {-| Create an empty Radix tree.
@@ -55,13 +62,6 @@ singleton : List a -> RadixTree a
 singleton element =
     Tree.singleton element
         |> RadixTree
-
-
-{-| Extract the `Tree` from the `RadixTree`.
--}
-toTree : RadixTree a -> Tree.Tree (List a)
-toTree (RadixTree tree) =
-    tree
 
 
 {-| An Ordered insert of a value to the Radix tree.
