@@ -48,10 +48,10 @@ An Un-ordered insert on the other hand doesn't care about the position of the ch
 Here's an example of how an un-ordered insert would result, assuming we have this list
 of Int.
 
-[ [1, 2, 3]
-, [2, 1, 4]
-, [4, 5, 6]
-]
+    [ [ 1, 2, 3 ]
+    , [ 2, 1, 4 ]
+    , [ 4, 5, 6 ]
+    ]
 
 This will result with:
 
