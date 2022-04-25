@@ -13,13 +13,13 @@ this one: <https://www.cs.usfca.edu/~galles/visualization/RadixTree.html>
 
 Say we have the following list of chars:
 
-[ [ "r", "o", "m", "a", "n", "e" ]
-, [ "r", "o", "m", "u", "l", "u", "s" ]
-, [ "r", "u", "b", "e", "n", "s" ]
-, [ "r", "u", "b", "e", "r" ]
-, [ "r", "u", "b", "i", "c", "o", "n" ]
-, [ "r", "u", "b", "i", "c", "u", "n", "d", "u", "s" ]
-]
+    [ [ "r", "o", "m", "a", "n", "e" ]
+    , [ "r", "o", "m", "u", "l", "u", "s" ]
+    , [ "r", "u", "b", "e", "n", "s" ]
+    , [ "r", "u", "b", "e", "r" ]
+    , [ "r", "u", "b", "i", "c", "o", "n" ]
+    , [ "r", "u", "b", "i", "c", "u", "n", "d", "u", "s" ]
+    ]
 
 We would like to represent this as a Radix tree. Where letters that repeat are
 in parent nodes, and the rest are in child nodes.
