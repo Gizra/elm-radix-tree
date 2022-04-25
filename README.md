@@ -87,3 +87,10 @@ Executes [Elm verify examples](https://github.com/stoeffel/elm-verify-examples) 
     ./execute-tests
 
 For automatic reviews execute `elm-review`
+
+## Related Packages
+
+- [elm-tries](https://package.elm-lang.org/packages/elm-scotland/elm-tries/latest) - 
+The reason we have this package is for being able to have un-ordered Radix trees as-well,
+and for being able to work with the very handy [elm-rosetree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/)
+Tree's API.
