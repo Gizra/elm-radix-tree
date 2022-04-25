@@ -76,7 +76,7 @@ toTree (RadixTree tree) =
     RadixTree.singleton [1, 2, 3]
         |> RadixTree.insert [1, 2, 4]
         |> RadixTree.toTree
-        |> Tree.children --> [singleton [4], singleton [3]]
+        |> Tree.children --> [Tree.singleton [4], Tree.singleton [3]]
 
 -}
 insert : List a -> RadixTree a -> RadixTree a
