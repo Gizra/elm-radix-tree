@@ -2,13 +2,13 @@
 
 # Radix tree
 
-Under the hood, the Tree structure is managed with 
-[elm-rosetree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/)
-
 Radix tree is defined in Wikipedia: <https://en.wikipedia.org/wiki/Radix_tree>
 
 A data structure that represents a space-optimized trie (prefix tree) in which
 each node that is the only child is merged with its parent.
+
+Under the hood, the Tree structure is managed with
+[elm-rosetree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/)
 
 In this package we have two kinds of implementations, one is ordered and the
 other is un-ordered. It's possible that the un-ordered isn't called "Radix tree"
@@ -48,8 +48,8 @@ It would look like this:
 
 This package allows inserting values to the tree in an Ordered and Un-ordered manner.
 The ordered one is presented above. The "order" is in relation to the position of each
-letter. That is, when we look for the letter "r" that is the beginning of the list
-, on an Ordered list, we match it only to other "r" letters that are also at the beginning.
+letter. That is, when we look for the letter "r" that is the beginning of the list, 
+on an Ordered list, we match it only to other "r" letters that are also at the beginning.
 
 ## Un-Ordered Radix Tree
 
