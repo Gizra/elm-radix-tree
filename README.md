@@ -80,9 +80,10 @@ You can see the package in action with the example provided
 
 Then navigate to http://localhost:8000/example/src/Example.elm
 
-## Tests
-
+## Tests & Code Quality
 
 Executes [Elm verify examples](https://github.com/stoeffel/elm-verify-examples) and [Elm test](https://github.com/elm-explorations/test)
 
     ./execute-tests
+
+For automatic reviews execute `elm-review`
