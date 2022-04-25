@@ -11,7 +11,6 @@ when inside the directory containing this file.
 
 -}
 
-
 import Docs.NoMissing exposing (exposedModules, onlyExposed)
 import Docs.ReviewAtDocs
 import Docs.ReviewLinksAndSections
@@ -21,10 +20,10 @@ import NoDebug.TodoOrToString
 import NoExposingEverything
 import NoImportingEverything
 import NoMissingTypeAnnotation
-import NoMissingTypeAnnotationInLetIn
 import NoMissingTypeExpose
 import NoPrematureLetComputation
 import NoSimpleLetBody
+import NoUnoptimizedRecursion
 import NoUnused.CustomTypeConstructorArgs
 import NoUnused.CustomTypeConstructors
 import NoUnused.Dependencies
@@ -54,10 +53,12 @@ config =
     , NoImportingEverything.rule []
         |> Rule.ignoreErrorsForDirectories [ "tests/VerifyExamples" ]
     , NoMissingTypeAnnotation.rule
+
     -- , NoMissingTypeAnnotationInLetIn.rule
     , NoMissingTypeExpose.rule
     , NoSimpleLetBody.rule
     , NoPrematureLetComputation.rule
+    , NoUnoptimizedRecursion.rule (NoUnoptimizedRecursion.optOutWithComment "IGNORE TCO")
     , NoUnused.CustomTypeConstructors.rule []
     , NoUnused.CustomTypeConstructorArgs.rule
     , NoUnused.Dependencies.rule
