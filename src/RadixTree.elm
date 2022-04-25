@@ -95,7 +95,7 @@ empty =
 
     import Tree
 
-    singleton [1, 2, 3]
+    RadixTree.singleton [1, 2, 3]
         |> Tree.label --> [1, 2, 3]
 
 -}
@@ -108,12 +108,12 @@ singleton element =
 
     import Tree
 
-    singleton [1, 2, 3]
-        |> insert [1, 2, 4]
+    RadixTree.singleton [1, 2, 3]
+        |> RadixTree.insert [1, 2, 4]
         |> Tree.label --> [1, 2]
 
-    singleton [1, 2, 3]
-        |> insert [1, 2, 4]
+    RadixTree.singleton [1, 2, 3]
+        |> RadixTree.insert [1, 2, 4]
         |> Tree.children --> [singleton [4], singleton [3]]
 
 -}
@@ -163,8 +163,8 @@ insertHelper funcs xs treeZipper =
                         |> TreeZipper.mapTree (Tree.prependChild (Tree.singleton xs))
 
                 Just nextTreeZipper ->
-                    nextTreeZipper
-                        |> insertHelper funcs xs
+                    -- Recurse.
+                    insertHelper funcs xs nextTreeZipper
 
         ys ->
             let
@@ -175,9 +175,8 @@ insertHelper funcs xs treeZipper =
                 -- There's no match, try the next sibling, if exists.
                 case treeZipper |> TreeZipper.nextSibling of
                     Just nextTreeZipper ->
-                        nextTreeZipper
-                            -- Recurse.
-                            |> insertHelper funcs xs
+                        -- Recurse.
+                        insertHelper funcs xs nextTreeZipper
 
                     Nothing ->
                         -- We've reached the last sibling, so we can add a new sibling.
@@ -202,12 +201,19 @@ insertHelper funcs xs treeZipper =
                             |> TreeZipper.replaceTree newTree
 
                     else
-                        treeZipper
-                            -- Try to advance
-                            |> TreeZipper.forward
-                            -- Recurse.
-                            |> Maybe.map (insertHelper funcs splitInfo.left)
-                            |> Maybe.withDefault treeZipper
+                        let
+                            maybeNextTreeZipper =
+                                treeZipper
+                                    -- Try to advance
+                                    |> TreeZipper.forward
+                        in
+                        case maybeNextTreeZipper of
+                            Just nextTreeZipper ->
+                                -- Recurse.
+                                insertHelper funcs splitInfo.left nextTreeZipper
+
+                            Nothing ->
+                                treeZipper
 
                 else
                     -- Nothing remains to be added.
