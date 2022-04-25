@@ -3,7 +3,7 @@ module RadixTreeUnOrdered exposing
     , empty, singleton, insert, toTree
     )
 
-{-| Build an ordered Radix tree.
+{-| Build an unordered Radix tree.
 
 
 # Structure
