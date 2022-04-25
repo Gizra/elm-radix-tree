@@ -20,9 +20,10 @@ before_install:
 install:
   - node --version
   - npm --version
-  - npm install -g elm-verify-examples@5.0.0
+  - npm install -g elm-verify-examples@5.0.0 elm-review
 
 script:
   - elm-format --validate src
   - elm make
   - ./execute-tests
+  - elm-review
