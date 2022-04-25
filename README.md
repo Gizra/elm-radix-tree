@@ -82,11 +82,14 @@ Then navigate to http://localhost:8000/example/src/Example.elm
 
 ## Tests & Code Quality
 
-Executes [Elm verify examples](https://github.com/stoeffel/elm-verify-examples) and [Elm test](https://github.com/elm-explorations/test)
+    npm install
+    npm test
 
-    ./execute-tests
+This will execute:
 
-For automatic reviews execute `elm-review`
+1. [Elm verify examples](https://github.com/stoeffel/elm-verify-examples) and [Elm test](https://github.com/elm-explorations/test)
+2. Check elm-format
+3. Analyze with `elm-review`
 
 ## Related Packages
 

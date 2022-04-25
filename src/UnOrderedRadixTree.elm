@@ -1,6 +1,6 @@
-module RadixTreeUnOrdered exposing
-    ( RadixTreeUnOrdered
-    , empty, singleton, insert, toTree
+module UnOrderedRadixTree exposing
+    ( empty, singleton, insert, toTree
+    , RadixTreeUnOrdered
     )
 
 {-| Build an unordered Radix tree.
@@ -8,7 +8,7 @@ module RadixTreeUnOrdered exposing
 
 # Structure
 
-@docs RadixTreeUnOrdered
+@docs UnOrderedRadixTree
 
 
 # Build
@@ -31,8 +31,8 @@ type RadixTreeUnOrdered a
 
     import Tree
 
-    RadixTreeUnOrdered.empty
-        |> RadixTreeUnOrdered.toTree
+    UnOrderedRadixTree.empty
+        |> UnOrderedRadixTree.toTree
         |> Tree.label --> []
 
 -}
@@ -46,8 +46,8 @@ empty =
 
     import Tree
 
-    RadixTreeUnOrdered.singleton [1, 2, 3]
-        |> RadixTreeUnOrdered.toTree
+    UnOrderedRadixTree.singleton [1, 2, 3]
+        |> UnOrderedRadixTree.toTree
         |> Tree.label --> [1, 2, 3]
 
 -}
@@ -57,7 +57,7 @@ singleton element =
         |> RadixTreeUnOrdered
 
 
-{-| Extract the `Tree` from the `RadixTreeUnOrdered`.
+{-| Extract the `Tree` from the `UnOrderedRadixTree`.
 -}
 toTree : RadixTreeUnOrdered a -> Tree.Tree (List a)
 toTree (RadixTreeUnOrdered tree) =
@@ -68,9 +68,9 @@ toTree (RadixTreeUnOrdered tree) =
 
     import Tree
 
-    RadixTreeUnOrdered.singleton [1, 2, 3]
-        |> RadixTreeUnOrdered.insert [2, 1, 4]
-        |> RadixTreeUnOrdered.toTree
+    UnOrderedRadixTree.singleton [1, 2, 3]
+        |> UnOrderedRadixTree.insert [2, 1, 4]
+        |> UnOrderedRadixTree.toTree
         |> Tree.label --> [2, 1]
 
 -}
