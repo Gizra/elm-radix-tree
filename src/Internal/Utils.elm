@@ -19,7 +19,7 @@ import Tree.Zipper as TreeZipper
 {-| Generalized insert, that accepts a tuple with the insert function, and the remove function
 to apply.
 
-See the 'split' function.
+See the [split](#split) function.
 
 -}
 insertWith : { intersectFunc : List a -> List a -> List a, removeFunc : List a -> List a -> List a } -> List a -> Tree.Tree (List a) -> Tree.Tree (List a)

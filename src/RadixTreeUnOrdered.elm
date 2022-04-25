@@ -1,19 +1,11 @@
-module RadixTreeUnOrdered exposing
-    ( empty, singleton, insert
-    , toTree
-    )
+module RadixTreeUnOrdered exposing (empty, singleton, insert, toTree)
 
 {-| Build an ordered Radix tree.
 
 
 # Build
 
-@docs empty, singleton, insert, insertWith, insertUnOrdered
-
-
-# Lists manipulation
-
-@docs orderedIntersect, orderedRemove, unOrderedIntersect, unOrderedRemove
+@docs empty, singleton, insert, toTree
 
 -}
 
