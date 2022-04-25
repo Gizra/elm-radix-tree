@@ -290,18 +290,22 @@ we look for matches starting from the first element.
 -}
 orderedIntersect : List a -> List a -> List a
 orderedIntersect xs ys =
+    let
+        listLength =
+            List.length xs
+    in
     -- We start with entire list, and trim it down to find the intersecting elements.
     if List.Extra.isPrefixOf xs ys then
         xs
 
-    else if List.length xs == 1 then
+    else if listLength == 1 then
         -- No match
         []
 
     else
         let
             xsUpdated =
-                List.take (List.length xs - 1) xs
+                List.take (listLength - 1) xs
         in
         orderedIntersect xsUpdated ys
 
