@@ -1,7 +1,6 @@
 module UnOrderedRadixTree exposing
-    ( toTree
+    ( UnOrderedRadixTree, toTree
     , empty, singleton, insert
-    , RadixTreeUnOrdered
     )
 
 {-| Build an unordered Radix tree.
@@ -24,14 +23,14 @@ import Tree
 
 {-| Represents an ordered Radix tree. Under the hood we use [Tree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/Tree)
 -}
-type RadixTreeUnOrdered a
-    = RadixTreeUnOrdered (Tree.Tree (List a))
+type UnOrderedRadixTree a
+    = UnOrderedRadixTree (Tree.Tree (List a))
 
 
 {-| Extract the `Tree` from the `UnOrderedRadixTree`.
 -}
-toTree : RadixTreeUnOrdered a -> Tree.Tree (List a)
-toTree (RadixTreeUnOrdered tree) =
+toTree : UnOrderedRadixTree a -> Tree.Tree (List a)
+toTree (UnOrderedRadixTree tree) =
     tree
 
 
@@ -44,10 +43,10 @@ toTree (RadixTreeUnOrdered tree) =
         |> Tree.label --> []
 
 -}
-empty : RadixTreeUnOrdered a
+empty : UnOrderedRadixTree a
 empty =
     Tree.singleton []
-        |> RadixTreeUnOrdered
+        |> UnOrderedRadixTree
 
 
 {-| Create an Radix tree with a single value.
@@ -59,10 +58,10 @@ empty =
         |> Tree.label --> [1, 2, 3]
 
 -}
-singleton : List a -> RadixTreeUnOrdered a
+singleton : List a -> UnOrderedRadixTree a
 singleton element =
     Tree.singleton element
-        |> RadixTreeUnOrdered
+        |> UnOrderedRadixTree
 
 
 {-| An Un-ordered insert of a value to the Radix tree.
@@ -70,12 +69,15 @@ singleton element =
     import Tree
 
     UnOrderedRadixTree.singleton [1, 2, 3]
+        -- At this point both "1" and "2" are in both lists. This means that
+        -- when converting to tree both "1" and "2" will in the root. The root
+        -- will have two children: "3" and "4".
         |> UnOrderedRadixTree.insert [2, 1, 4]
         |> UnOrderedRadixTree.toTree
         |> Tree.label --> [2, 1]
 
 -}
-insert : List a -> RadixTreeUnOrdered a -> RadixTreeUnOrdered a
-insert xs (RadixTreeUnOrdered tree) =
+insert : List a -> UnOrderedRadixTree a -> UnOrderedRadixTree a
+insert xs (UnOrderedRadixTree tree) =
     insertWith { intersectFunc = unOrderedIntersect, removeFunc = unOrderedRemove } xs tree
-        |> RadixTreeUnOrdered
+        |> UnOrderedRadixTree
