@@ -2,6 +2,8 @@
 
 > Radix tree
 
+Read more about the use cases in the package's docs.
+
 ## Example
 
 You can see the package in action with the example provided
