@@ -71,7 +71,6 @@ This will result with:
         - 5
         - 6
 
-
 ## Example
 
 You can see the package in action with the example provided
