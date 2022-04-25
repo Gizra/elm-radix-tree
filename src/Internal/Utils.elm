@@ -1,9 +1,7 @@
 module Internal.Utils exposing
-    ( insertHelper
-    , insertWith
+    ( insertWith
     , orderedIntersect
     , orderedRemove
-    , split
     , unOrderedIntersect
     , unOrderedRemove
     )
@@ -19,7 +17,7 @@ import Tree.Zipper as TreeZipper
 {-| Generalized insert, that accepts a tuple with the insert function, and the remove function
 to apply.
 
-See the [split](#split) function.
+See the `split` function.
 
 -}
 insertWith : { intersectFunc : List a -> List a -> List a, removeFunc : List a -> List a -> List a } -> List a -> Tree.Tree (List a) -> Tree.Tree (List a)
@@ -170,24 +168,25 @@ we look for matches starting from the first element.
 -}
 orderedIntersect : List a -> List a -> List a
 orderedIntersect xs ys =
-    let
-        listLength =
-            List.length xs
-    in
     -- We start with entire list, and trim it down to find the intersecting elements.
     if List.Extra.isPrefixOf xs ys then
         xs
 
-    else if listLength == 1 then
-        -- No match
-        []
-
     else
         let
-            xsUpdated =
-                List.take (listLength - 1) xs
+            listLength =
+                List.length xs
         in
-        orderedIntersect xsUpdated ys
+        if listLength == 1 then
+            -- No match
+            []
+
+        else
+            let
+                xsUpdated =
+                    List.take (listLength - 1) xs
+            in
+            orderedIntersect xsUpdated ys
 
 
 {-| Remove matching elements, with regard to their order in the list. That is,

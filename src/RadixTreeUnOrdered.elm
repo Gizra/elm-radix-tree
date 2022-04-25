@@ -1,6 +1,14 @@
-module RadixTreeUnOrdered exposing (empty, singleton, insert, toTree)
+module RadixTreeUnOrdered exposing
+    ( RadixTreeUnOrdered
+    , empty, singleton, insert, toTree
+    )
 
 {-| Build an ordered Radix tree.
+
+
+# Structure
+
+@docs RadixTreeUnOrdered
 
 
 # Build
