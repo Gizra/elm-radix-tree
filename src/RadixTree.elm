@@ -81,5 +81,5 @@ toTree (RadixTree tree) =
 -}
 insert : List a -> RadixTree a -> RadixTree a
 insert xs (RadixTree tree) =
-    insertWith ( orderedIntersect, orderedRemove ) xs tree
+    insertWith { intersectFunc = orderedIntersect, removeFunc = orderedRemove } xs tree
         |> RadixTree

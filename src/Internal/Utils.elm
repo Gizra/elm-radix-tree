@@ -22,7 +22,7 @@ to apply.
 See the 'split' function.
 
 -}
-insertWith : ( List a -> List a -> List a, List a -> List a -> List a ) -> List a -> Tree.Tree (List a) -> Tree.Tree (List a)
+insertWith : { intersectFunc : List a -> List a -> List a, removeFunc : List a -> List a -> List a } -> List a -> Tree.Tree (List a) -> Tree.Tree (List a)
 insertWith funcs xs tree =
     insertHelper funcs xs (TreeZipper.fromTree tree)
         |> TreeZipper.toTree
@@ -31,7 +31,7 @@ insertWith funcs xs tree =
 {-| Helper function for the insert, which uses recursion to iterate over the tree,
 and insert the right elements in the right nodes.
 -}
-insertHelper : ( List a -> List a -> List a, List a -> List a -> List a ) -> List a -> TreeZipper.Zipper (List a) -> TreeZipper.Zipper (List a)
+insertHelper : { intersectFunc : List a -> List a -> List a, removeFunc : List a -> List a -> List a } -> List a -> TreeZipper.Zipper (List a) -> TreeZipper.Zipper (List a)
 insertHelper funcs xs treeZipper =
     case TreeZipper.label treeZipper of
         [] ->
@@ -123,8 +123,8 @@ insertHelper funcs xs treeZipper =
 (i.e. new items being inserted), and the ones on the "right" (i.e. out of an existing
 node of the tree).
 -}
-split : ( List a -> List a -> List a, List a -> List a -> List a ) -> List a -> List a -> { intersect : List a, left : List a, right : List a }
-split ( intersectFunc, removeFunc ) xs ys =
+split : { intersectFunc : List a -> List a -> List a, removeFunc : List a -> List a -> List a } -> List a -> List a -> { intersect : List a, left : List a, right : List a }
+split { intersectFunc, removeFunc } xs ys =
     let
         intersect =
             intersectFunc xs ys

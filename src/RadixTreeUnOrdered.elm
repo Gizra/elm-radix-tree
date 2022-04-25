@@ -76,5 +76,5 @@ toTree (RadixTreeUnOrdered tree) =
 -}
 insert : List a -> RadixTreeUnOrdered a -> RadixTreeUnOrdered a
 insert xs (RadixTreeUnOrdered tree) =
-    insertWith ( unOrderedIntersect, unOrderedRemove ) xs tree
+    insertWith { intersectFunc = unOrderedIntersect, removeFunc = unOrderedRemove } xs tree
         |> RadixTreeUnOrdered
