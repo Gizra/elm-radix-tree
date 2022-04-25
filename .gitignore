@@ -1,3 +1,4 @@
 tests/VerifyExamples
 elm-stuff/
 .idea
+node_modules
