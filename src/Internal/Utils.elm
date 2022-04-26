@@ -191,7 +191,7 @@ orderedIntersect xs ys =
 
 
 {-| Remove matching elements, with regard to their order in the list. That is,
-only if the elements are in the beginning fo the list they will be removed.
+only if the elements are in the beginning of the list they will be removed.
 -}
 orderedRemove : List a -> List a -> List a
 orderedRemove xs intersect =
