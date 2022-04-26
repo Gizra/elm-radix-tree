@@ -11,7 +11,7 @@ Under the hood, the Tree structure is managed with
 [elm-rosetree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/)
 
 In this package we have two kinds of implementations, one is ordered and the
-other is un-ordered. It's possible that the un-ordered isn't called "Radix tree"
+other is unordered. It's possible that the unordered isn't called "Radix tree"
 but the author of the package doesn't know of a better name.
 
 It would be easier to follow by example, or try it on a helpful app like
@@ -21,15 +21,17 @@ this one: <https://www.cs.usfca.edu/~galles/visualization/RadixTree.html>
 
 Say we have the following list of chars:
 
-    [ [ "r", "o", "m", "a", "n", "e" ]
-    , [ "r", "o", "m", "u", "l", "u", "s" ]
-    , [ "r", "u", "b", "e", "n", "s" ]
-    , [ "r", "u", "b", "e", "r" ]
-    , [ "r", "u", "b", "i", "c", "o", "n" ]
-    , [ "r", "u", "b", "i", "c", "u", "n", "d", "u", "s" ]
-    ]
+```elm
+[ [ "r", "o", "m", "a", "n", "e" ]
+, [ "r", "o", "m", "u", "l", "u", "s" ]
+, [ "r", "u", "b", "e", "n", "s" ]
+, [ "r", "u", "b", "e", "r" ]
+, [ "r", "u", "b", "i", "c", "o", "n" ]
+, [ "r", "u", "b", "i", "c", "u", "n", "d", "u", "s" ]
+]
+```
 
-We would like to represent this as a Radix tree. Where letters that repeat are
+We would like to represent this as a Radix tree where letters that repeat are
 in parent nodes, and the rest are in child nodes.
 
 It would look like this:
@@ -55,13 +57,15 @@ on an Ordered list, we match it only to other "r" letters that are also at the b
 
 An Un-ordered insert on the other hand doesn't care about the position of the chars, but rather if they exist or not.
 
-Here's an example of how an un-ordered insert would result, assuming we have this list
+Here's an example of how an unordered insert would result, assuming we have this list
 of Int.
 
-    [ [ 1, 2, 3 ]
-    , [ 2, 1, 4 ]
-    , [ 4, 5, 6 ]
-    ]
+```elm
+[ [ 1, 2, 3 ]
+, [ 2, 1, 4 ]
+, [ 4, 5, 6 ]
+]
+```
 
 This will result with:
 
@@ -94,6 +98,6 @@ This will execute:
 ## Related Packages
 
 - [elm-tries](https://package.elm-lang.org/packages/elm-scotland/elm-tries/latest) - 
-The reason we have this package is for being able to have un-ordered Radix trees as-well,
+The reason we have this package is for being able to have unordered Radix trees as-well,
 and for being able to work with the very handy [elm-rosetree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/)
 Tree's API.

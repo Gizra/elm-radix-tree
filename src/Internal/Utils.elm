@@ -143,6 +143,7 @@ split { intersectFunc, removeFunc } xs ys =
 -}
 unOrderedIntersect : List a -> List a -> List a
 unOrderedIntersect xs ys =
+    -- Order is important here, so we need to use the slower `foldr`.
     List.foldr
         (\x accum ->
             if List.member x ys then

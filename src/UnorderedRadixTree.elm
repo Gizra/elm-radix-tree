@@ -1,5 +1,5 @@
-module UnOrderedRadixTree exposing
-    ( UnOrderedRadixTree, toTree
+module UnorderedRadixTree exposing
+    ( UnorderedRadixTree, toTree
     , empty, singleton, insert
     )
 
@@ -8,7 +8,7 @@ module UnOrderedRadixTree exposing
 
 # Structure
 
-@docs UnOrderedRadixTree, toTree
+@docs UnorderedRadixTree, toTree
 
 
 # Build
@@ -23,14 +23,14 @@ import Tree
 
 {-| Represents an ordered Radix tree. Under the hood we use [Tree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/Tree)
 -}
-type UnOrderedRadixTree a
-    = UnOrderedRadixTree (Tree.Tree (List a))
+type UnorderedRadixTree a
+    = UnorderedRadixTree (Tree.Tree (List a))
 
 
-{-| Extract the `Tree` from the `UnOrderedRadixTree`.
+{-| Extract the `Tree` from the `UnorderedRadixTree`.
 -}
-toTree : UnOrderedRadixTree a -> Tree.Tree (List a)
-toTree (UnOrderedRadixTree tree) =
+toTree : UnorderedRadixTree a -> Tree.Tree (List a)
+toTree (UnorderedRadixTree tree) =
     tree
 
 
@@ -38,46 +38,48 @@ toTree (UnOrderedRadixTree tree) =
 
     import Tree
 
-    UnOrderedRadixTree.empty
-        |> UnOrderedRadixTree.toTree
+    UnorderedRadixTree.empty
+        |> UnorderedRadixTree.toTree
         |> Tree.label --> []
 
 -}
-empty : UnOrderedRadixTree a
+empty : UnorderedRadixTree a
 empty =
     Tree.singleton []
-        |> UnOrderedRadixTree
+        |> UnorderedRadixTree
 
 
 {-| Create an Radix tree with a single value.
 
     import Tree
 
-    UnOrderedRadixTree.singleton [1, 2, 3]
-        |> UnOrderedRadixTree.toTree
+    UnorderedRadixTree.singleton [1, 2, 3]
+        |> UnorderedRadixTree.toTree
         |> Tree.label --> [1, 2, 3]
 
 -}
-singleton : List a -> UnOrderedRadixTree a
+singleton : List a -> UnorderedRadixTree a
 singleton element =
     Tree.singleton element
-        |> UnOrderedRadixTree
+        |> UnorderedRadixTree
 
 
 {-| An Un-ordered insert of a value to the Radix tree.
 
     import Tree
 
-    UnOrderedRadixTree.singleton [1, 2, 3]
+    UnorderedRadixTree.singleton [1, 2, 3]
+        |> UnorderedRadixTree.insert [2, 1, 4]
         -- At this point both "1" and "2" are in both lists. This means that
         -- when converting to tree both "1" and "2" will in the root. The root
         -- will have two children: "3" and "4".
-        |> UnOrderedRadixTree.insert [2, 1, 4]
-        |> UnOrderedRadixTree.toTree
+        |> UnorderedRadixTree.toTree
+        -- The name might be a bit confusing, but `Tree.label` gets us the values
+        -- of the current node of the tree. In our case the value is a list of Int.
         |> Tree.label --> [2, 1]
 
 -}
-insert : List a -> UnOrderedRadixTree a -> UnOrderedRadixTree a
-insert xs (UnOrderedRadixTree tree) =
+insert : List a -> UnorderedRadixTree a -> UnorderedRadixTree a
+insert xs (UnorderedRadixTree tree) =
     insertWith { intersectFunc = unOrderedIntersect, removeFunc = unOrderedRemove } xs tree
-        |> UnOrderedRadixTree
+        |> UnorderedRadixTree
