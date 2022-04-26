@@ -28,7 +28,8 @@ type UnorderedRadixTree a
 
 
 {-| Extract the `Tree` from the `RadixTree`. The Tree is from the package [Tree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/Tree)
-that has a very nice API for working with trees.
+that has a very nice API for working with trees, and allows converting the `Tree`
+to a `Zipper` - making traversals easier.
 -}
 toTree : UnorderedRadixTree a -> Tree.Tree (List a)
 toTree (UnorderedRadixTree tree) =
