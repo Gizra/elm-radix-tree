@@ -21,13 +21,14 @@ import Internal.Utils exposing (insertWith, orderedIntersect, orderedRemove)
 import Tree
 
 
-{-| Represents an ordered Radix tree. Under the hood we use [Tree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/Tree)
+{-| Represents an ordered Radix tree.
 -}
 type RadixTree a
     = RadixTree (Tree.Tree (List a))
 
 
-{-| Extract the `Tree` from the `RadixTree`.
+{-| Extract the `Tree` from the `RadixTree`. The Tree is from the package [Tree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/Tree)
+that has a very nice API for working with trees.
 -}
 toTree : RadixTree a -> Tree.Tree (List a)
 toTree (RadixTree tree) =

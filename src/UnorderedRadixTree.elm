@@ -21,13 +21,14 @@ import Internal.Utils exposing (insertWith, unOrderedIntersect, unOrderedRemove)
 import Tree
 
 
-{-| Represents an ordered Radix tree. Under the hood we use [Tree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/Tree)
+{-| Represents an ordered Radix tree.
 -}
 type UnorderedRadixTree a
     = UnorderedRadixTree (Tree.Tree (List a))
 
 
-{-| Extract the `Tree` from the `UnorderedRadixTree`.
+{-| Extract the `Tree` from the `RadixTree`. The Tree is from the package [Tree](https://package.elm-lang.org/packages/zwilias/elm-rosetree/latest/Tree)
+that has a very nice API for working with trees.
 -}
 toTree : UnorderedRadixTree a -> Tree.Tree (List a)
 toTree (UnorderedRadixTree tree) =
