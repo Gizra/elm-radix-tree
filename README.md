@@ -92,7 +92,7 @@ Then navigate to http://localhost:8000/example/src/Example.elm
 This will execute:
 
 1. [Elm verify examples](https://github.com/stoeffel/elm-verify-examples) and [Elm test](https://github.com/elm-explorations/test)
-2. Check elm-format
+2. Validate `elm-format`
 3. Analyze with `elm-review`
 
 ## Related Packages
